@@ -11779,6 +11779,7 @@ div#notebook {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">pandas</span> <span class="k">import</span> <span class="n">Series</span><span class="p">,</span> <span class="n">DataFrame</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="k">import</span> <span class="n">zscore</span>
 </pre></div>
 
 </div>
@@ -11942,7 +11943,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">zs_concrete</span><span class="o">=</span><span class="n">c1</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">zscore_standize</span><span class="p">)</span>
@@ -11959,7 +11960,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[6]:</div>
+<div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -12067,39 +12068,10 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">minmax_normalize</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
-    <span class="n">cmin</span><span class="o">=</span><span class="n">c</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
-    <span class="n">cmax</span><span class="o">=</span><span class="n">c</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">cmax</span><span class="p">,</span><span class="n">cmin</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mm_concrete</span><span class="o">=</span><span class="n">c1</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">minmax_normalize</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mm_concrete</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">c1</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">zscore</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -12112,22 +12084,257 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[12]:</div>
+<div class="prompt output_prompt">Out[7]:</div>
 
 
 
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<div class="output_text output_subarea output_execute_result">
-<pre>cement           (540.0, 102.0)
-slag               (359.4, 0.0)
-ash                (200.1, 0.0)
-water            (247.0, 121.8)
-superplastic        (32.2, 0.0)
-coarseagg       (1145.0, 801.0)
-fineagg          (992.6, 594.0)
-age                (365.0, 1.0)
-strength           (82.6, 2.33)
-dtype: object</pre>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cement</th>
+      <th>slag</th>
+      <th>ash</th>
+      <th>water</th>
+      <th>superplastic</th>
+      <th>coarseagg</th>
+      <th>fineagg</th>
+      <th>age</th>
+      <th>strength</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-1.339017</td>
+      <td>1.601441</td>
+      <td>-0.847144</td>
+      <td>1.027590</td>
+      <td>-1.039143</td>
+      <td>-0.014398</td>
+      <td>-0.312970</td>
+      <td>-0.279733</td>
+      <td>-0.355018</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-1.074790</td>
+      <td>-0.367541</td>
+      <td>1.096078</td>
+      <td>-1.090116</td>
+      <td>0.769617</td>
+      <td>1.388141</td>
+      <td>0.282260</td>
+      <td>-0.501465</td>
+      <td>-0.737108</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.298384</td>
+      <td>-0.856888</td>
+      <td>0.648965</td>
+      <td>0.273274</td>
+      <td>-0.118015</td>
+      <td>-0.206121</td>
+      <td>1.093371</td>
+      <td>-0.279733</td>
+      <td>-0.395144</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.145209</td>
+      <td>0.465044</td>
+      <td>-0.847144</td>
+      <td>2.175461</td>
+      <td>-1.039143</td>
+      <td>-0.526517</td>
+      <td>-1.292542</td>
+      <td>-0.279733</td>
+      <td>0.600806</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-1.209776</td>
+      <td>1.269798</td>
+      <td>-0.847144</td>
+      <td>0.549700</td>
+      <td>0.484905</td>
+      <td>0.958372</td>
+      <td>-0.959363</td>
+      <td>-0.279733</td>
+      <td>-1.049727</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">minmax_normalize</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="n">cmin</span><span class="o">=</span><span class="n">c</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    <span class="n">cmax</span><span class="o">=</span><span class="n">c</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">(</span> <span class="p">(</span><span class="n">c</span><span class="o">-</span><span class="n">cmin</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">cmax</span><span class="o">-</span><span class="n">cmin</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mm_concrete</span><span class="o">=</span><span class="n">c1</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">minmax_normalize</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mm_concrete</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[10]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cement</th>
+      <th>slag</th>
+      <th>ash</th>
+      <th>water</th>
+      <th>superplastic</th>
+      <th>coarseagg</th>
+      <th>fineagg</th>
+      <th>age</th>
+      <th>strength</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.089726</td>
+      <td>0.589872</td>
+      <td>0.000000</td>
+      <td>0.652556</td>
+      <td>0.000000</td>
+      <td>0.496512</td>
+      <td>0.387607</td>
+      <td>0.074176</td>
+      <td>0.343341</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.152740</td>
+      <td>0.117418</td>
+      <td>0.621189</td>
+      <td>0.291534</td>
+      <td>0.335404</td>
+      <td>0.813372</td>
+      <td>0.507275</td>
+      <td>0.035714</td>
+      <td>0.263859</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.337900</td>
+      <td>0.000000</td>
+      <td>0.478261</td>
+      <td>0.523962</td>
+      <td>0.170807</td>
+      <td>0.453198</td>
+      <td>0.670346</td>
+      <td>0.074176</td>
+      <td>0.334994</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.374429</td>
+      <td>0.317195</td>
+      <td>0.000000</td>
+      <td>0.848243</td>
+      <td>0.000000</td>
+      <td>0.380814</td>
+      <td>0.190667</td>
+      <td>0.074176</td>
+      <td>0.542170</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.120548</td>
+      <td>0.510295</td>
+      <td>0.000000</td>
+      <td>0.571086</td>
+      <td>0.282609</td>
+      <td>0.716279</td>
+      <td>0.257652</td>
+      <td>0.074176</td>
+      <td>0.198829</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 </div>
 
 </div>
